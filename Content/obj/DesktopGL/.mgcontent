@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/ballBarCollision.wav</File>
+    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/ballEdgeCollision.wav</File>
+    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/ballOutSound.wav</File>
+    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/music.wav</File>
+    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/PongBall.png</File>
+    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/PongBar.png</File>
+    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/Score.spritefont</File>
+  </SourceFiles>
+</SourceFileCollection>
