@@ -43,8 +43,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
-    <Compile Include="Bar.cs" />
+    <Compile Include="BallManager.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="IGameObject.cs" />
+    <Compile Include="Math2D.cs" />
+    <Compile Include="Paddle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

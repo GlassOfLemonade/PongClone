@@ -11,11 +11,13 @@ namespace PongClone
 {
     class Ball
     {
-        #region Fields
+        #region Fields & Properties
         private int xPos;
         private int yPos;
 
         public Texture2D texture;
+
+
         #endregion
 
         #region Constructor
@@ -25,7 +27,18 @@ namespace PongClone
             this.xPos = xPos;
             this.yPos = yPos;
         }
+        #endregion
 
+        #region Methods
+        public void HorizontalBounce()
+        {
+            
+        }
+
+        public void VerticalBounce()
+        {
+            
+        }
         #endregion
     }
 }
