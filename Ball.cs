@@ -9,34 +9,62 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PongClone
 {
-    class Ball
+    /// <summary>
+    /// Handles all of ball's properties
+    /// </summary>
+    public class Ball : GameObject
     {
-        #region Fields & Properties
-        private int xPos;
-        private int yPos;
-
-        public Texture2D texture;
-
-
+        #region Properties
+        private Vector2 startingPos;
+        // random seed for angle calculations
+        private Random rand = new Random();
         #endregion
 
         #region Constructor
-        public Ball(Texture2D texture, int xPos, int yPos)
+        public Ball(Texture2D texture, Vector2 position, Rectangle screen)
+            : base(texture, position, screen)
         {
-            this.texture = texture;
-            this.xPos = xPos;
-            this.yPos = yPos;
+            startingPos = position;
+            DefaultSpeed();
+            SetDirection();
         }
         #endregion
 
         #region Methods
-        public void HorizontalBounce()
+        public void DefaultSpeed()
         {
-            
+            Velocity = new Vector2(0.4f, 0.4f);
         }
+        public void SetDirection()
+        {
+            direction = new Vector2(0.7f, 0.7f);
+        }
+        public void Reset()
+        {
+            DefaultSpeed();
+            SetDirection();
+        }
+        #endregion
 
+        #region Updates
+        public override void Update(GameTime gameTime)
+        {
+            position += direction * Velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            VerticalBounce();
+        }
+        #endregion
+
+        #region Bounce Mechanics
         public void VerticalBounce()
         {
+            if(position.Y < 0 + texture.Width || position.Y > screen.Height - texture.Height)
+            {
+                direction.Y = -direction.Y;
+            }
+        }
+        public void PaddleBounce(PlayerPaddle paddle)
+        {
+            Velocity *= 1.05f;
             
         }
         #endregion

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PongClone
 {
-    class GameObject : IGameObject
+    public class GameObject : IGameObject
     {
         #region Properties
         protected Texture2D texture;
@@ -40,6 +40,11 @@ namespace PongClone
         {
             get { return texture.Height; }
         }
+
+        public Rectangle CollisionRectangle
+        {
+            get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); }
+        }
         #endregion
 
         public GameObject(Texture2D texture, Vector2 position, Rectangle screen)
@@ -55,7 +60,7 @@ namespace PongClone
             spriteBatch.Draw(texture, position, Color.White);
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             // update position of object
             position += direction * velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -65,11 +70,6 @@ namespace PongClone
         {
             position.X = x;
             position.Y = y;
-        }
-
-        public Rectangle CollisionRectangle
-        {
-            get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); }
         }
     }
 }

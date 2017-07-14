@@ -4,12 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/ballBarCollision.wav</File>
-    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/ballEdgeCollision.wav</File>
-    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/ballOutSound.wav</File>
-    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/music.wav</File>
-    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/PongBall.png</File>
-    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/PongBar.png</File>
-    <File>C:/Users/kevin/Documents/Visual Studio 2017/Projects/PongClone/PongClone/Content/Score.spritefont</File>
+    <File>C:/Users/kevin/documents/visual studio 2017/Projects/PongClone/PongClone/Content/ballBarCollision.wav</File>
+    <File>C:/Users/kevin/documents/visual studio 2017/Projects/PongClone/PongClone/Content/ballEdgeCollision.wav</File>
+    <File>C:/Users/kevin/documents/visual studio 2017/Projects/PongClone/PongClone/Content/ballOutSound.wav</File>
+    <File>C:/Users/kevin/documents/visual studio 2017/Projects/PongClone/PongClone/Content/music.wav</File>
+    <File>C:/Users/kevin/documents/visual studio 2017/Projects/PongClone/PongClone/Content/PongBall.png</File>
+    <File>C:/Users/kevin/documents/visual studio 2017/Projects/PongClone/PongClone/Content/PongBar.png</File>
+    <File>C:/Users/kevin/documents/visual studio 2017/Projects/PongClone/PongClone/Content/Score.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

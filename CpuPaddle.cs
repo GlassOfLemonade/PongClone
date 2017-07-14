@@ -3,18 +3,13 @@
 //using System.Linq;
 //using System.Text;
 //using System.Threading.Tasks;
-//using Microsoft.Xna.Framework;
 
 //namespace PongClone
 //{
 //    /// <summary>
-//    /// static class, used for angle maths
+//    /// Handles all initialization and AI of CPU paddle.
 //    /// </summary>
-//    public static class Math2D
+//    class CpuPaddle : GameObject
 //    {
-//        public static Vector2 GetRightAngle()
-//        {
-            
-//        }
 //    }
 //}

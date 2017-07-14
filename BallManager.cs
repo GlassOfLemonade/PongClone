@@ -9,9 +9,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PongClone
 {
+    /// <summary>
+    /// Handles sounds, scoring as a result of ball movement
+    /// </summary>
     class BallManager
     {
-        // reference to ball
-        Ball ball;
+        private readonly Ball ball;
+
+
     }
 }

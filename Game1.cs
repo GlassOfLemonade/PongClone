@@ -16,6 +16,9 @@ namespace PongClone
         private const int Width = 800;
         private const int Height = 600;
 
+        Ball ball;
+        PlayerPaddle playerPaddle;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,8 +52,11 @@ namespace PongClone
 
             // TODO: use this.Content to load your game content here
             var ballTexture = this.Content.Load<Texture2D>("PongBall");
+            var paddleTexture = this.Content.Load<Texture2D>("PongBar");
+            var screen = new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
 
-            var ball = new Ball(ballTexture, Width / 2, Height / 2);
+            ball = new Ball(ballTexture, new Vector2((Width/2)-(ballTexture.Width/2), (Height/2)-(ballTexture.Height/2)), screen);
+            playerPaddle = new PlayerPaddle(paddleTexture, new Vector2(Width - (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)), screen);
         }
 
         /// <summary>
@@ -73,8 +79,10 @@ namespace PongClone
                 Exit();
 
             // TODO: Add your update logic here
-
+            ball.Update(gameTime);
+            playerPaddle.Update(gameTime);
             base.Update(gameTime);
+            
         }
 
         /// <summary>
@@ -87,7 +95,8 @@ namespace PongClone
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            
+            ball.Draw(spriteBatch);
+            playerPaddle.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
