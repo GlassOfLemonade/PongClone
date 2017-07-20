@@ -12,10 +12,13 @@ namespace PongClone
     /// <summary>
     /// Handles sounds, scoring as a result of ball movement
     /// </summary>
-    class BallManager
+    public class BallManager
     {
         private readonly Ball ball;
 
-
+        public BallManager(Ball ball)
+        {
+            this.ball = ball;
+        }
     }
 }

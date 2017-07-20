@@ -33,11 +33,11 @@ namespace PongClone
         #region Methods
         public void DefaultSpeed()
         {
-            Velocity = new Vector2(0.4f, 0.4f);
+            velocity = new Vector2(0.2f, 0.2f);
         }
         public void SetDirection()
         {
-            direction = new Vector2(0.7f, 0.7f);
+            Direction = new Vector2(1f, 1f);
         }
         public void Reset()
         {
@@ -49,7 +49,7 @@ namespace PongClone
         #region Updates
         public override void Update(GameTime gameTime)
         {
-            position += direction * Velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            Position += Direction * velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             VerticalBounce();
         }
         #endregion
@@ -57,15 +57,10 @@ namespace PongClone
         #region Bounce Mechanics
         public void VerticalBounce()
         {
-            if(position.Y < 0 + texture.Width || position.Y > screen.Height - texture.Height)
+            if(Position.Y < 0 + Width || Position.Y > screen.Height - Height)
             {
                 direction.Y = -direction.Y;
             }
-        }
-        public void PaddleBounce(PlayerPaddle paddle)
-        {
-            Velocity *= 1.05f;
-            
         }
         #endregion
     }

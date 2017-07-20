@@ -12,24 +12,31 @@ namespace PongClone
     public class GameObject : IGameObject
     {
         #region Properties
-        protected Texture2D texture;
-        protected Vector2 position;
+        private Texture2D texture;
+        private Vector2 position;
         protected Vector2 direction;
         protected Rectangle screen;
-        private Vector2 velocity;
+        internal Vector2 velocity;
 
         public Vector2 Position
         {
             get { return position; }
+            set { position = value; }
         }
-        public Vector2 Velocity
+        public float VelocityX
         {
-            get { return velocity; }
-            set { velocity = value; }
+            get { return velocity.X; }
+            set { velocity.X = value; }
+        }
+        public float VelocityY
+        {
+            get { return velocity.Y; }
+            set { velocity.Y = value; }
         }
         public Vector2 Direction
         {
             get { return direction; }
+            set { direction = value; }
         }
 
         public int Width
@@ -52,7 +59,7 @@ namespace PongClone
             this.texture = texture;
             this.position = position;
             this.screen = screen;
-            Velocity = Vector2.Zero;
+            velocity = Vector2.Zero;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -63,7 +70,7 @@ namespace PongClone
         public virtual void Update(GameTime gameTime)
         {
             // update position of object
-            position += direction * velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            position += Direction * velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void SetPosition(int x, int y)

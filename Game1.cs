@@ -18,6 +18,7 @@ namespace PongClone
 
         Ball ball;
         PlayerPaddle playerPaddle;
+        CpuPaddle cpuPaddle;
 
         public Game1()
         {
@@ -57,6 +58,7 @@ namespace PongClone
 
             ball = new Ball(ballTexture, new Vector2((Width/2)-(ballTexture.Width/2), (Height/2)-(ballTexture.Height/2)), screen);
             playerPaddle = new PlayerPaddle(paddleTexture, new Vector2(Width - (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)), screen);
+            cpuPaddle = new CpuPaddle(paddleTexture, new Vector2(0 + (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)), screen);
         }
 
         /// <summary>
@@ -81,6 +83,8 @@ namespace PongClone
             // TODO: Add your update logic here
             ball.Update(gameTime);
             playerPaddle.Update(gameTime);
+            cpuPaddle.Update(gameTime, ball);
+            CheckCollision();
             base.Update(gameTime);
             
         }
@@ -97,8 +101,21 @@ namespace PongClone
             spriteBatch.Begin();
             ball.Draw(spriteBatch);
             playerPaddle.Draw(spriteBatch);
+            cpuPaddle.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        private void CheckCollision()
+        {
+            if (ball.CollisionRectangle.Intersects(playerPaddle.CollisionRectangle))
+            {
+                ball.VelocityX = -ball.VelocityX * 1.05f;
+            }
+            if (ball.CollisionRectangle.Intersects(cpuPaddle.CollisionRectangle))
+            {
+                ball.VelocityX = -ball.VelocityX * 1.05f;
+            }
         }
     }
 }
