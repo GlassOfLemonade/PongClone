@@ -21,8 +21,8 @@ namespace PongClone
         #endregion
 
         #region Constructor
-        public Ball(Texture2D texture, Vector2 position, Rectangle screen)
-            : base(texture, position, screen)
+        public Ball(Texture2D texture, Vector2 position)
+            : base(texture, position)
         {
             startingPos = position;
             DefaultSpeed();
@@ -43,6 +43,7 @@ namespace PongClone
         {
             DefaultSpeed();
             SetDirection();
+            Position = startingPos;
         }
         #endregion
 
@@ -50,18 +51,18 @@ namespace PongClone
         public override void Update(GameTime gameTime)
         {
             Position += Direction * velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            VerticalBounce();
+            //VerticalBounce();
         }
         #endregion
 
         #region Bounce Mechanics
-        public void VerticalBounce()
-        {
-            if(Position.Y < 0 + Width || Position.Y > screen.Height - Height)
-            {
-                direction.Y = -direction.Y;
-            }
-        }
+        //public void VerticalBounce()
+        //{
+        //    if(Position.Y < 0 + Width || Position.Y > screen.Height - Height)
+        //    {
+        //        direction.Y = -direction.Y;
+        //    }
+        //}
         #endregion
     }
 }

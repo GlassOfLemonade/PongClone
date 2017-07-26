@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 namespace PongClone
 {
@@ -19,6 +20,8 @@ namespace PongClone
         Ball ball;
         PlayerPaddle playerPaddle;
         CpuPaddle cpuPaddle;
+        ContentManager soundContent;
+        CollisionChecks CollisionHandler;
 
         public Game1()
         {
@@ -50,15 +53,22 @@ namespace PongClone
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            
 
             // TODO: use this.Content to load your game content here
             var ballTexture = this.Content.Load<Texture2D>("PongBall");
             var paddleTexture = this.Content.Load<Texture2D>("PongBar");
             var screen = new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
 
-            ball = new Ball(ballTexture, new Vector2((Width/2)-(ballTexture.Width/2), (Height/2)-(ballTexture.Height/2)), screen);
-            playerPaddle = new PlayerPaddle(paddleTexture, new Vector2(Width - (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)), screen);
-            cpuPaddle = new CpuPaddle(paddleTexture, new Vector2(0 + (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)), screen);
+            ball = new Ball(ballTexture, new Vector2((Width/2)-(ballTexture.Width/2), (Height/2)-(ballTexture.Height/2)));
+            playerPaddle = new PlayerPaddle(paddleTexture, new Vector2(Width - (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)));
+            cpuPaddle = new CpuPaddle(paddleTexture, new Vector2(0 + (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)));
+
+            CollisionHandler = new CollisionChecks(ball, playerPaddle, cpuPaddle, screen);
+
+            #region Audio Content
+
+            #endregion
         }
 
         /// <summary>
@@ -84,7 +94,8 @@ namespace PongClone
             ball.Update(gameTime);
             playerPaddle.Update(gameTime);
             cpuPaddle.Update(gameTime, ball);
-            CheckCollision();
+            CollisionHandler.Update(gameTime);
+            //CheckCollision();
             base.Update(gameTime);
             
         }
@@ -106,16 +117,16 @@ namespace PongClone
             base.Draw(gameTime);
         }
 
-        private void CheckCollision()
-        {
-            if (ball.CollisionRectangle.Intersects(playerPaddle.CollisionRectangle))
-            {
-                ball.VelocityX = -ball.VelocityX * 1.05f;
-            }
-            if (ball.CollisionRectangle.Intersects(cpuPaddle.CollisionRectangle))
-            {
-                ball.VelocityX = -ball.VelocityX * 1.05f;
-            }
-        }
+        //private void CheckCollision()
+        //{
+        //    if (ball.CollisionRectangle.Intersects(playerPaddle.CollisionRectangle))
+        //    {
+        //        ball.VelocityX = -ball.VelocityX * 1.05f;
+        //    }
+        //    if (ball.CollisionRectangle.Intersects(cpuPaddle.CollisionRectangle))
+        //    {
+        //        ball.VelocityX = -ball.VelocityX * 1.05f;
+        //    }
+        //}
     }
 }

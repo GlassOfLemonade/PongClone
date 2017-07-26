@@ -14,8 +14,8 @@ namespace PongClone
         #region Properties
         private Texture2D texture;
         private Vector2 position;
-        protected Vector2 direction;
-        protected Rectangle screen;
+        public Vector2 direction;
+        //protected Rectangle screen;
         internal Vector2 velocity;
 
         public Vector2 Position
@@ -33,6 +33,10 @@ namespace PongClone
             get { return velocity.Y; }
             set { velocity.Y = value; }
         }
+        /// <summary>
+        /// wrote myself into a corner before here, will need to refactor the direction property later.
+        /// need accessors for individual axes.
+        /// </summary>
         public Vector2 Direction
         {
             get { return direction; }
@@ -54,11 +58,10 @@ namespace PongClone
         }
         #endregion
 
-        public GameObject(Texture2D texture, Vector2 position, Rectangle screen)
+        public GameObject(Texture2D texture, Vector2 position)
         {
             this.texture = texture;
             this.position = position;
-            this.screen = screen;
             velocity = Vector2.Zero;
         }
 

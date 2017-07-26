@@ -8,8 +8,8 @@ namespace PongClone
     {
         private const float PADDLE_VEL = 0.4f;
 
-        public PlayerPaddle(Texture2D texture, Vector2 position, Rectangle screen)
-            :base(texture, position, screen)
+        public PlayerPaddle(Texture2D texture, Vector2 position)
+            :base(texture, position)
         {
 
         }
@@ -37,23 +37,23 @@ namespace PongClone
         }
         #endregion
 
-        protected void CheckScreenBounds()
-        {
-            if (Position.Y + Height > screen.Height - Width)
-            {
-                SetPosition((int)Position.X, screen.Height - Height - Width);
-            }
-            else if (Position.Y < 0 + Width)
-            {
-                SetPosition((int)Position.X, 0 + Width);
-            }
-        }
+        //protected void CheckScreenBounds()
+        //{
+        //    if (Position.Y + Height > screen.Height - Width)
+        //    {
+        //        SetPosition((int)Position.X, screen.Height - Height - Width);
+        //    }
+        //    else if (Position.Y < 0 + Width)
+        //    {
+        //        SetPosition((int)Position.X, 0 + Width);
+        //    }
+        //}
 
         public override void Update(GameTime gameTime)
         {
             Position += Direction * velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             InputHandler(Keyboard.GetState());
-            CheckScreenBounds();
+            //CheckScreenBounds();
         }
     }
 }

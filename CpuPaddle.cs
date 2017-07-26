@@ -10,23 +10,23 @@ namespace PongClone
     {
         private const float PADDLE_VEL = 0.4f;
 
-        public CpuPaddle(Texture2D texture, Vector2 position, Rectangle screen)
-            : base(texture, position, screen)
+        public CpuPaddle(Texture2D texture, Vector2 position)
+            : base(texture, position)
         {
 
         }
 
-        private void CheckScreenBounds()
-        {
-            if (Position.Y + Height > screen.Height - Width)
-            {
-                SetPosition((int)Position.X, screen.Height - Height - Width);
-            }
-            if (Position.Y < 0 + Width)
-            {
-                SetPosition((int)Position.X, 0 + Width);
-            }
-        }
+        //private void CheckScreenBounds()
+        //{
+        //    if (Position.Y + Height > screen.Height - Width)
+        //    {
+        //        SetPosition((int)Position.X, screen.Height - Height - Width);
+        //    }
+        //    if (Position.Y < 0 + Width)
+        //    {
+        //        SetPosition((int)Position.X, 0 + Width);
+        //    }
+        //}
 
         #region AI
         public void MovePaddle(Ball ball)
@@ -51,7 +51,7 @@ namespace PongClone
         public void Update(GameTime gameTime, Ball ball)
         {
             Position += Direction * velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            CheckScreenBounds();
+            //CheckScreenBounds();
             MovePaddle(ball);
         }
     }
