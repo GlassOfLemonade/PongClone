@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PongClone
 {
@@ -18,8 +15,10 @@ namespace PongClone
 
         public EventArgs e = null;
         public delegate void CollisionHandler(CollisionChecks checker, EventArgs e);
-        public event CollisionHandler bounce; // event notification for bounce
-        public event CollisionHandler goal;
+        public event CollisionHandler paddleBounce;
+        public event CollisionHandler screenBounce; 
+        public event CollisionHandler playerGoal;
+        public event CollisionHandler cpuGoal;
 
         public CollisionChecks(Ball ball, PlayerPaddle player, CpuPaddle cpu, Rectangle screen)
         {
@@ -45,17 +44,18 @@ namespace PongClone
             if (Ball.CollisionRectangle.Intersects(Player.CollisionRectangle))
             {
                 Ball.VelocityX = -Ball.VelocityX * 1.05f;
-                if (bounce != null)
+                 // if the ball 
+                if (paddleBounce != null)
                 {
-                    bounce(this, e);
+                    paddleBounce(this, e);
                 }
             }
             if (Ball.CollisionRectangle.Intersects(Cpu.CollisionRectangle))
             {
                 Ball.VelocityX = -Ball.VelocityX * 1.05f;
-                if (bounce != null)
+                if (paddleBounce != null)
                 {
-                    bounce(this, e);
+                    paddleBounce(this, e);
                 }
             }
         }
@@ -81,18 +81,26 @@ namespace PongClone
                     if (gameObject.Position.Y < 0 + gameObject.Width || gameObject.Position.Y > Screen.Height - gameObject.Height)
                     {
                         gameObject.direction.Y = -gameObject.direction.Y;
-                        if (bounce != null)
+                        if (screenBounce != null)
                         {
-                            bounce(this, e);
+                            screenBounce(this, e);
                         }
                     }
                     // stuff for passing x axis goal
-                    if (gameObject.Position.X < 0 || gameObject.Position.X > Screen.Width)
+                    if (gameObject.Position.X < 0)
                     {
                         Ball.Reset();
-                        if (goal != null)
+                        if (playerGoal != null)
                         {
-                            goal(this, e);
+                            playerGoal(this, e);
+                        }
+                    }
+                    else if (gameObject.Position.X > Screen.Width)
+                    {
+                        Ball.Reset();
+                        if (cpuGoal != null)
+                        {
+                            cpuGoal(this, e);
                         }
                     }
                 }

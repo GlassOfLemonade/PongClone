@@ -37,23 +37,10 @@ namespace PongClone
         }
         #endregion
 
-        //protected void CheckScreenBounds()
-        //{
-        //    if (Position.Y + Height > screen.Height - Width)
-        //    {
-        //        SetPosition((int)Position.X, screen.Height - Height - Width);
-        //    }
-        //    else if (Position.Y < 0 + Width)
-        //    {
-        //        SetPosition((int)Position.X, 0 + Width);
-        //    }
-        //}
-
         public override void Update(GameTime gameTime)
         {
             Position += Direction * velocity * (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             InputHandler(Keyboard.GetState());
-            //CheckScreenBounds();
         }
     }
 }

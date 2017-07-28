@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Content;
 
 namespace PongClone
 {
@@ -20,8 +19,11 @@ namespace PongClone
         Ball ball;
         PlayerPaddle playerPaddle;
         CpuPaddle cpuPaddle;
-        ContentManager soundContent;
         CollisionChecks CollisionHandler;
+        SoundManager soundManager;
+        Rectangle screen;
+        Score score;
+        SpriteFont font;
 
         public Game1()
         {
@@ -30,6 +32,9 @@ namespace PongClone
 
             graphics.PreferredBackBufferWidth = Width;
             graphics.PreferredBackBufferHeight = Height;
+
+            soundManager = new SoundManager(Services, Content.RootDirectory);
+            score = new Score();
         }
 
         /// <summary>
@@ -41,7 +46,8 @@ namespace PongClone
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            
+            
             base.Initialize();
         }
 
@@ -58,7 +64,7 @@ namespace PongClone
             // TODO: use this.Content to load your game content here
             var ballTexture = this.Content.Load<Texture2D>("PongBall");
             var paddleTexture = this.Content.Load<Texture2D>("PongBar");
-            var screen = new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
+            screen = new Rectangle(0, 0, Window.ClientBounds.Width, Window.ClientBounds.Height);
 
             ball = new Ball(ballTexture, new Vector2((Width/2)-(ballTexture.Width/2), (Height/2)-(ballTexture.Height/2)));
             playerPaddle = new PlayerPaddle(paddleTexture, new Vector2(Width - (paddleTexture.Width * 2), (Height / 2) - (paddleTexture.Height / 2)));
@@ -66,9 +72,13 @@ namespace PongClone
 
             CollisionHandler = new CollisionChecks(ball, playerPaddle, cpuPaddle, screen);
 
-            #region Audio Content
+            font = this.Content.Load<SpriteFont>("Score");
 
+            #region Audio Content
+            soundManager.LoadContent();
+            soundManager.Subscribe(CollisionHandler);
             #endregion
+            score.Subscribe(CollisionHandler);
         }
 
         /// <summary>
@@ -78,6 +88,7 @@ namespace PongClone
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            
         }
 
         /// <summary>
@@ -95,7 +106,6 @@ namespace PongClone
             playerPaddle.Update(gameTime);
             cpuPaddle.Update(gameTime, ball);
             CollisionHandler.Update(gameTime);
-            //CheckCollision();
             base.Update(gameTime);
             
         }
@@ -113,20 +123,10 @@ namespace PongClone
             ball.Draw(spriteBatch);
             playerPaddle.Draw(spriteBatch);
             cpuPaddle.Draw(spriteBatch);
+            spriteBatch.DrawString(font, score.PlayerScore.ToString(), new Vector2((float)Window.ClientBounds.Width * (3f / 4f), 50), Color.White);
+            spriteBatch.DrawString(font, score.CpuScore.ToString(), new Vector2((float)Window.ClientBounds.Width * (1f / 4f), 50), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
-
-        //private void CheckCollision()
-        //{
-        //    if (ball.CollisionRectangle.Intersects(playerPaddle.CollisionRectangle))
-        //    {
-        //        ball.VelocityX = -ball.VelocityX * 1.05f;
-        //    }
-        //    if (ball.CollisionRectangle.Intersects(cpuPaddle.CollisionRectangle))
-        //    {
-        //        ball.VelocityX = -ball.VelocityX * 1.05f;
-        //    }
-        //}
     }
 }
